@@ -128,3 +128,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# environment variables
+.env
+# Firebase files
+service-account-file.json
+#system files 
+.DS_Store
+sc/.DS_Store
+
+# database raw data
+src/database/data/
