@@ -27,6 +27,12 @@ Firebase Authentication is distinguished by its robust security and seamless int
 1. Ensure MongoDB is installed and running on your machine.
 2. Initialize Firebase by consulting the [official Firebase documentation](https://firebase.google.com/docs)
 
+### Setting up environment variables and setting files
+
+1. Copy the `.env.template` file to a new file name `.env`.
+2. Fill in the appropriate values for each environment variable in the `.env` file.
+3. Download the Firebase Admin SDK's service account key and store it in the project root and name it service-account-file.json
+
 ### Running the Project
 
 1. In a separate terminal, initiate the MongoDB service:
@@ -37,7 +43,6 @@ Firebase Authentication is distinguished by its robust security and seamless int
 
    - Navigate to the [Firebase Console](https://console.firebase.google.com/) and establish a new project.
    - Retrieve your Firebase configuration details(API key, Auth domain, etc.) and store them in a `.env` file within the project root.
-   - Download the Firebase Admin SDK's service account key and store it in the project root.
 
 3. Navigate to the project directory and execute:
    ```bash
