@@ -5,5 +5,6 @@ const config = {
   googleClientSecret: process.env.CLIENT_SECRET,
   riotKey: process.env.RIOT_KEY,
   firebaseSaFile: path.join(__dirname, "../../", process.env.FIREBASE_SA_FILE),
+  postgresUser: process.env.POSTGRES_USER,
 };
 module.exports = config;

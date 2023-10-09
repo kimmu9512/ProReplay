@@ -1,27 +1,35 @@
-const { sequelize } = require("../../config/db");
 const { DataTypes } = require("sequelize");
+const { sequelize } = require("../../config/db");
 
-const User = sequelize.define("User", {
+const Summoner = sequelize.define("Summoner", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
-  firebaseUID: {
+  summonerName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  region: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  puuid: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
-  displayName: {
+  accountId: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
-  email: {
+  riotId: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
 });
-
-module.exports = User;
+module.exports = Summoner;
