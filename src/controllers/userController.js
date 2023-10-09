@@ -1,4 +1,3 @@
-const passport = require("passport");
 const User = require("../database/models/user");
 const Summoner = require("../database/models/summoner");
 const UserSubscription = require("../database/models/userSubscriptions");
@@ -144,8 +143,8 @@ exports.getSubscribedSummoners = async (req, res) => {
   try {
     firebaseUser = await req.user;
     const user = await getUser(firebaseUser.uid);
-    const summonerUserSubscribed = user.getSummoners();
-
+    const summonerUserSubscribed = await user.getSummoners();
+    console.log(summonerUserSubscribed);
     res.status(200).send(summonerUserSubscribed);
   } catch (error) {
     console.error("Error in getting subscribed summoners: " + error);
@@ -170,6 +169,8 @@ exports.setDisplayName = async (req, res) => {
     const user = await getUser(firebaseUser.uid);
     const { displayName } = req.body;
     user.displayName = displayName;
+    await user.save();
+    console.log("Display name updated to : ", displayName);
     res.status(200).send("Display name updated");
   } catch (error) {
     console.error("Error in setting display name: " + error);

@@ -28,6 +28,7 @@ sequelize
     console.error("Error creating tables: ", error);
   });
 app.use("/login", require("./routes/userRoutes"));
+app.use("/summoner", require("./routes/summonerRoutes"));
 app.listen(3000, () => {
   console.log("Server started on port 3000");
 });
