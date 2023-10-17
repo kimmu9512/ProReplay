@@ -31,5 +31,15 @@ const Summoner = sequelize.define("Summoner", {
     allowNull: false,
     unique: true,
   },
+  profileIconId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: false,
+  },
+  summonerLevel: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: false,
+  },
 });
 module.exports = Summoner;
