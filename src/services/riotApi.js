@@ -7,6 +7,9 @@ const verifySummoner = async (summonerName, region) => {
   const url = generateSummonerLookupUrl(summonerName, region);
   try {
     const response = await axios.get(url);
+    console.log(response.data);
+    response.data.summonerName = summonerName;
+    response.data.region = region;
     return response.data;
   } catch (error) {
     console.error("Error : " + error);

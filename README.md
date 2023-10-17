@@ -12,9 +12,14 @@ ProReplay harnesses a blend of contemporary technologies, curated to deliver sup
 
 Node.js is renowned for its rapid performance, especially when handling I/O-bound operations, making it an ideal choice for managing gameplay data (such as waiting for summoners to play the game). Express.js, a minimalist framework for Node.js, simplifies the setup, promotes scalability, and provides a plethora of plugins.
 
-### Database - MongoDB:
+### Database - PostgreSQL:
 
-Given the dynamic nature of ProReplay's development—where data structures are frequently modified and added—MongoDB's schema-less NoSQL structure offers unmatched adaptability. This flexibility ensures that the database can smoothly incorporate new functionalities and structural changes. Such agility makes MongoDB particularly suitable for projects in a constant state of evolution without a fixed, established codebase.
+ProReplay handles intricate relationships between users, summoners, matches, and recordings. PostgreSQL, an advanced open-source relational database, is aptly equipped for this job due to:
+
+ACID Compliance: Guarantees the reliability and integrity of every transaction.
+Complex Queries: Enables efficient querying of intertwined relationships between tables, utilizing JOIN operations and more.
+Extensions and Indexing: Offers robust indexing techniques like GIN, GiST, and SP-GiST, optimizing search operations. The extensibility of PostgreSQL also allows it to adapt and extend its capabilities further.
+Concurrency: Utilizes Multi-Version Concurrency Control (MVCC) to handle multiple transactions without conflicts, ensuring smooth operations even with multiple concurrent users.
 
 ### Authentication - Firebase:
 
@@ -24,7 +29,7 @@ Firebase Authentication is distinguished by its robust security and seamless int
 
 ### Prerequisites
 
-1. Ensure MongoDB is installed and running on your machine.
+1. Ensure PostgreSQL is installed and running on your machine. If not, follow the official PostgreSQL installation guide.
 2. Initialize Firebase by consulting the [official Firebase documentation](https://firebase.google.com/docs)
 
 ### Setting up environment variables and setting files
@@ -35,17 +40,13 @@ Firebase Authentication is distinguished by its robust security and seamless int
 
 ### Running the Project
 
-1. In a separate terminal, initiate the MongoDB service:
-   ```bash
-   $ mongod
-   ```
-2. Firebase Setup:
+1. Firebase Setup:
 
    - Navigate to the [Firebase Console](https://console.firebase.google.com/) and establish a new project.
    - Retrieve your Firebase configuration details(API key, Auth domain, etc.) and store them in a `.env` file within the project root.
 
-3. Navigate to the project directory and execute:
+2. Navigate to the project directory and execute:
    ```bash
    $ node ./src/app.js
    ```
-   This will start the ProReplay backend server on the specified port(default:3000).
+   This will start the ProReplay backend server on the specified port(default:3001).

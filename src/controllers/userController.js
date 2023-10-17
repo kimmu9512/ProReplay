@@ -86,8 +86,11 @@ exports.subscribeSummoner = async (req, res) => {
           puuid: riotData.puuid,
           accountId: riotData.accountId,
           riotId: riotData.id,
+          profileIconId: riotData.profileIconId,
+          summnerLevel: riotData.summonerLevel,
         },
       });
+
       const newUserSubscription = await UserSubscription.create({
         userId: user.id,
         summonerId: newSummoner.id,

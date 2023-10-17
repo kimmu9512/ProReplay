@@ -27,6 +27,7 @@ const connectDB = () => {
     client.query("SELECT NOW()", (err, result) => {
       release();
       if (err) {
+        s;
         return console.error("Error executing query", err.stack);
       }
       console.log(result.rows);

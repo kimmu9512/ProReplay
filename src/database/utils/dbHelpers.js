@@ -30,6 +30,7 @@ const getSummoner = async (summonerName, region) => {
     if (summoner) {
       return summoner;
     } else {
+      console.log("hello world");
       return null;
     }
   } catch (error) {
@@ -41,7 +42,8 @@ const getSummoner = async (summonerName, region) => {
         " with error of: ",
       error
     );
-    throw error;
+    console.log("could not find summoner but no problem");
+    return null;
   }
 };
 
