@@ -6,6 +6,7 @@ const app = express();
 const { User } = require("./database/models/user");
 const { Summoner } = require("./database/models/summoner");
 const { UserSubscriptions } = require("./database/models/userSubscriptions");
+const summonerController = require("./controllers/summonerController");
 const cors = require("cors");
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +18,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+//YEs
 // CORS OPTION FOR PRODUCTION
 // const corsOptions = {
 //   origin: "https://example.com",
@@ -42,6 +44,16 @@ app.get("/", (req, res) => {
 });
 app.use("/login", require("./routes/userRoutes"));
 app.use("/summoner", require("./routes/summonerRoutes"));
+app.use("/assets", require("./routes/assetsRoutes"));
+app.use("/game", require("./routes/gameRoutes"));
 app.listen(3001, () => {
-  console.log("Server started on port 3000");
+  console.log("Server started on port 3001");
+  setInterval(async () => {
+    try {
+      console.log("Running scheduled check for active games");
+      await summonerController.checkAllUserSubscriptions(); // Call the core logic function
+    } catch (error) {
+      console.error("Error during scheduled check for active games:", error);
+    }
+  }, 120000); // 120000 milliseconds = 2 minutes
 });
