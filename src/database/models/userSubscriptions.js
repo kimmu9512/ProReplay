@@ -19,7 +19,7 @@ const UserSubscriptions = sequelize.define("UserSubscription", {
     },
   },
   summonerId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     primaryKey: true,
     references: {
@@ -28,14 +28,24 @@ const UserSubscriptions = sequelize.define("UserSubscription", {
     },
   },
 });
+// Associate UserSubscription to User
+UserSubscriptions.belongsTo(User, {
+  foreignKey: "userId",
+});
 
+// Associate UserSubscription to Summoner
+UserSubscriptions.belongsTo(Summoner, {
+  foreignKey: "summonerId",
+});
 User.belongsToMany(Summoner, {
   through: UserSubscriptions,
   foreignKey: "userId",
+  as: "SubscribedSummoners", // <- alias
 });
 Summoner.belongsToMany(User, {
   through: UserSubscriptions,
   foreignKey: "summonerId",
+  as: "Subscribers", // <- alias
 });
 
 module.exports = UserSubscriptions;

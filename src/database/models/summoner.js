@@ -3,43 +3,68 @@ const { sequelize } = require("../../config/db");
 
 const Summoner = sequelize.define("Summoner", {
   id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
     primaryKey: true,
-    allowNull: false,
+    validate: {
+      len: [1, 63], // Max length 63 characters
+    },
   },
-  summonerName: {
+
+  accountId: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
-  region: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    unique: true,
+    validate: {
+      len: [1, 56], // Max length 56 characters
+    },
   },
   puuid: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      len: [78, 78], // Exact length of 78 characters
+    },
   },
-  accountId: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
-  riotId: {
+  tag: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   profileIconId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    unique: false,
   },
   summonerLevel: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     allowNull: false,
-    unique: false,
+  },
+  region: {
+    type: DataTypes.ENUM,
+    values: [
+      "br1",
+      "eun1",
+      "euw1",
+      "jp1",
+      "kr",
+      "la1",
+      "la2",
+      "na1",
+      "oc1",
+      "ph2",
+      "ru",
+      "sg2",
+      "th2",
+      "tr1",
+      "tw2",
+      "vn2",
+    ],
+    allowNull: false,
   },
 });
 module.exports = Summoner;
