@@ -3,6 +3,16 @@ class UserSubscriptionManager {
   constructor(userSubscriptionModel) {
     this.UserSubscription = userSubscriptionModel;
   }
+  async getAllUserSubscriptions() {
+    try {
+      const userSubscriptions = await this.UserSubscription.findAll();
+      return userSubscriptions;
+    } catch (error) {
+      console.error("Error in getting all user subscriptions: " + error);
+      throw error;
+    }
+  }
+
   async hasUserSubscribedToSummoner(userId, summonerId) {
     try {
       const userSubscription = await this.UserSubscription.findOne({

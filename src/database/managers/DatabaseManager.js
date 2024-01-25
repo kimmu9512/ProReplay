@@ -3,9 +3,21 @@ const SummonerManager = require("./SummonerManager");
 const UserSubscriptionManager = require("./UserSubscriptionManager");
 
 class DatabaseManager {
-  constructor() {
-    this.userManager = new UserManager();
-    this.summonerManager = new SummonerManager();
-    this.userSubscripbtionManager = new UserSubscriptionManager();
+  constructor(
+    summonerModel,
+    gameSummonerModel,
+    gameModel,
+    userModel,
+    userSubscriptionModel
+  ) {
+    this.userManager = new UserManager(userModel);
+    this.gameManer = new GameManager(gameModel);
+    this.summonerManager = new SummonerManager(
+      summonerModel,
+      gameSummonerModel
+    );
+    this.userSubscripbtionManager = new UserSubscriptionManager(
+      userSubscriptionModel
+    );
   }
 }
